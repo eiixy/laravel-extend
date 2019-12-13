@@ -1,0 +1,9 @@
+[submodule "pakcages/sczts/sms"]
+	path = pakcages/sczts/sms
+	url = https://github.com/sczts/sms.git
+[submodule "pakcages/sczts/upload"]
+	path = pakcages/sczts/upload
+	url = https://github.com/sczts/upload.git
+[submodule "pakcages/eiixy/laravel-rbac"]
+	path = pakcages/eiixy/laravel-rbac
+	url = https://github.com/eiixy/laravel-rbac.git
