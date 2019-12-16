@@ -10,23 +10,34 @@
     "repositories": [
         {
             "type": "path",
-            "url": "../packages/sczts/upload"
+            "url": "packages/sczts/upload"
         },
         {
             "type": "path",
-            "url": "../packages/sczts/sms"
+            "url": "packages/sczts/sms"
         },
         {
             "type": "path",
-            "url": "../packages/eiixy/laravel-rbac"
+            "url": "packages/sczts/skeleton"
+        },
+        {
+            "type": "path",
+            "url": "packages/eiixy/laravel-rbac"
+        },
+        {
+            "type": "path",
+            "url": "packages/eiixy/test"
         }
+
     ],
     "require": {
         "php": "^7.2",
         "eiixy/laravel-rbac": "dev-master",
+        "eiixy/test": "dev-master",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^1.0",
+        "sczts/skeleton": "dev-master",
         "sczts/upload": "^0.2.4"
     },
     "require-dev": {

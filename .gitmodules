@@ -10,3 +10,6 @@
 [submodule "packages/sczts/upload"]
 	path = packages/sczts/upload
 	url = https://github.com/sczts/upload.git
+[submodule "packages/sczts/skeleton"]
+	path = packages/sczts/skeleton
+	url = https://github.com/sczts/skeleton.git
