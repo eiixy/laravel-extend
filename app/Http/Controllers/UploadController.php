@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Sczts\Upload\Upload;
-use Sczts\Common\StatusCode;
+use Sczts\Skeleton\Http\StatusCode;
 
 class UploadController extends Controller
 {
