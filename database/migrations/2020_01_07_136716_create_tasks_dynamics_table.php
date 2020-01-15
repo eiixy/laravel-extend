@@ -17,6 +17,7 @@ class CreateTasksDynamicsTable extends Migration
         Schema::create('tasks_dynamics', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('task_id')->index()->comment('任务id');
+            $table->integer('user_id')->index()->comment('用户id');
             $table->string('operation')->comment('操作');
             $table->json('data')->nullable()->comment('数据');
             $table->timestamps();

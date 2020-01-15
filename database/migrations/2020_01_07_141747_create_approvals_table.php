@@ -16,13 +16,14 @@ class CreateApprovalsTable extends Migration
         // 审批
         Schema::create('approvals', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('type')->comment('审批类型');
-            $table->integer('user_id')->index()->comment('发起者');
-            $table->integer('approval_user_id')->index()->comment('审批者');
-            $table->text('content')->comment('审批说明');
-            $table->text('data')->comment('关联数据');
+            $table->unsignedInteger('type')->comment('审批类型');
+            $table->unsignedInteger('user_id')->index()->comment('发起者');
+            $table->json('form_data')->comment('表单数据');
             $table->tinyInteger('status')->default(0)->comment('状态');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('type')->references('id')->on('approvals_types');
         });
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateApprovalsCcTable extends Migration
+class CreateApprovalsChainsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateApprovalsCcTable extends Migration
      */
     public function up()
     {
-        // 审批抄送
-        Schema::create('approvals_cc', function (Blueprint $table) {
+        // 审批链
+        Schema::create('approvals_chains', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('approval_id')->comment('审批id');
-            $table->unsignedInteger('user_id')->index()->comment('接收者');
+            $table->unsignedBigInteger('approval_id')->index()->comment('审批id');
+            $table->unsignedInteger('user_id')->index()->comment('审批者');
+            $table->string('comment')->comment('评论');
+            $table->tinyInteger('status')->default(0)->comment('审批状态');
             $table->timestamps();
 
-            $table->unique(['approval_id','user_id']);
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('approval_id')->references('id')->on('approvals');
         });
@@ -33,6 +34,6 @@ class CreateApprovalsCcTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('approvals_cc');
+        Schema::dropIfExists('approvals_chains');
     }
 }

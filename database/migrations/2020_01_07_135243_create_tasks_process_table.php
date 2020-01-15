@@ -19,6 +19,9 @@ class CreateTasksProcessTable extends Migration
             $table->bigInteger('task_id')->comment('任务id');
             $table->string('process_type')->comment('流程类型');
             $table->integer('process_id')->comment('流程id');
+            $table->string('description')->comment('流程描述');
+            $table->integer('user_id')->comment('添加者');
+            $table->tinyInteger('status')->comment('流程状态');
             $table->timestamps();
         });
     }
