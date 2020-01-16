@@ -20,8 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['prefix'=>'upload'],function (){
     Route::post('/','UploadController@upload');
 });
-//
-//Route::post('/upload', function (\Illuminate\Http\Request $request){
-//    $file = $request->file('file');
-//    $provider = \Sczts\Upload\Facades\Upload::upload($file);
-//});
+
+Route::get('routes', 'CommonController@routes');
+

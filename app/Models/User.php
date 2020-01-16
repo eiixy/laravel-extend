@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Eiixy\Rbac\Models\UserRole;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -39,4 +39,12 @@ class User extends Authenticatable
     ];
 
 
+    /**
+     * 部门
+     * @return \Illuminate\Database\Eloquent\Relations\HasOneThrough
+     */
+    public function department()
+    {
+        return $this->hasOneThrough(Organization::class,UserOrganization::class,'user_id','id','id','organization_id');
+    }
 }

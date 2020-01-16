@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->comment('密码');
             $table->tinyInteger('type')->default(0)->comment('用户类型');
             $table->tinyInteger('status')->default(0)->comment('用户状态');
-            $table->json('options')->comment('用户设置');
+            $table->json('options')->nullable()->comment('用户设置');
             $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();

@@ -40,7 +40,7 @@ class RbacPermissionSeeder extends Seeder
                             [
                                 'name' => '添加角色',
                                 'type' => Permission::TYPE_BUTTON,
-                                'keyword' => 'sys_role.add'
+                                'keyword' => 'sys_role.add,sys_permission.all'
                             ],
                             [
                                 'name' => '编辑角色',

@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RbacPermissionSeeder::class);
         $this->call(RbacRoleSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(UserOrganizationSeeder::class);
 
     }
 }
