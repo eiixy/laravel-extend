@@ -13,13 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// 公共模块
+Route::group([],function (){
+    // 文件上传
+    Route::post('upload','CommonController@upload');
+    // 获取权限路由列表
+    Route::get('routes', 'CommonController@routes');
 });
 
-Route::group(['prefix'=>'upload'],function (){
-    Route::post('/','UploadController@upload');
-});
-
-Route::get('routes', 'CommonController@routes');
-
+// 用户登录相关操作
+Route::post('login', 'AuthController@login');
+Route::get('logout', 'AuthController@logout');
+Route::get('refresh', 'AuthController@refresh');

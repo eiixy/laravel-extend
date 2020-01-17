@@ -2,42 +2,24 @@
 
 namespace App\Models;
 
-use Eiixy\Rbac\Models\UserRole;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Eiixy\Rbac\Traits\RbacUser;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable;
+    use Notifiable,RbacUser;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    const STATUS_NORMAL = 0;        // 正常
+    const STATUS_FORBIDDEN = 1;     // 禁用
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    const TYPE_ADMIN = 0;           // 管理员
+    const TYPE_SUPER_ADMIN = 1;     // 超级管理员
+    const TYPE_MEMBER = 2;          // 普通成员
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
+    protected $table = 'users';
+    protected $guarded = [];
 
     /**
      * 部门
@@ -46,5 +28,23 @@ class User extends Authenticatable
     public function department()
     {
         return $this->hasOneThrough(Organization::class,UserOrganization::class,'user_id','id','id','organization_id');
+    }
+
+    /**
+     * 获取会储存到 jwt 声明中的标识
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * 返回包含要添加到 jwt 声明中的自定义键值对数组
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return ['role' => 'user'];
     }
 }
